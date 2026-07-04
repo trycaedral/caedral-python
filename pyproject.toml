@@ -46,5 +46,5 @@ filterwarnings = ["ignore::DeprecationWarning"]
 
 [project.urls]
 Homepage = "https://caedral.com/docs/python"
-Repository = "https://github.com/caedral/caedral-python"
-Issues = "https://github.com/caedral/caedral-python/issues"
+Repository = "https://github.com/trycaedral/caedral-python"
+Issues = "https://github.com/trycaedral/caedral-python/issues"
