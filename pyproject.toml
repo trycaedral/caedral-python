@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "caedral"
+version = "0.1.0"
+description = "Official Python client for the Caedral API"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Caedral", email = "hello@caedral.com" }]
+keywords = ["caedral", "llm", "api", "ai"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Typing :: Typed",
+]
+dependencies = [
+  "httpx>=0.27.0",
+  "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "bcrypt>=4.0.0",
+  "psycopg[binary]>=3.1.0",
+  "python-dotenv>=1.0.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/caedral"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/caedral", "README.md", "tests"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[project.urls]
+Homepage = "https://caedral.com/docs/python"
+Repository = "https://github.com/caedral/caedral-python"
+Issues = "https://github.com/caedral/caedral-python/issues"
