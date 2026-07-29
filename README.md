@@ -1,6 +1,6 @@
 # Caedral Python SDK
 
-Official Python client for the [Caedral API](https://caedral.com). OpenAI-compatible request shapes — point your existing code at Caedral with minimal changes.
+Official Python client for the [Caedral API](https://caedral.com) (**v1.0.0**). OpenAI-compatible request shapes — point your existing code at Caedral with minimal changes.
 
 ## Installation
 
