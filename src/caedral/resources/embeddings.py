@@ -2,6 +2,12 @@ from __future__ import annotations
 
 from typing import Any
 
+from caedral.embeddings import (
+    DEFAULT_EMBEDDING_DIMENSIONS,
+    DEFAULT_EMBEDDING_MODEL,
+    validate_embedding_dimensions,
+    validate_embedding_model,
+)
 from caedral.http import HttpClient
 from caedral.types import EmbeddingCreateResponse
 
@@ -15,27 +21,19 @@ class EmbeddingsResource:
     def create(
         self,
         *,
-        model: str,
         input: str | list[str],
+        model: str = DEFAULT_EMBEDDING_MODEL,
+        dimensions: int = DEFAULT_EMBEDDING_DIMENSIONS,
         **kwargs: Any,
     ) -> EmbeddingCreateResponse:
-        """Generate dense vector embeddings for one or more inputs.
-
-        Args:
-            model: Embedding model identifier (for example
-                ``"caedral-embed"``).
-            input: A single string or a list of strings to embed.
-                When a list is provided, the response returns one
-                vector per input in the same order.
-            **kwargs: Additional request fields forwarded to the API.
-
-        Returns:
-            An :class:`EmbeddingCreateResponse` containing the
-            generated vectors and token usage.
-
-        Raises:
-            CaedralAPIError: If the API returns a non-2xx response.
-        """
-        body = {"model": model, "input": input, **kwargs}
+        """Generate dense vector embeddings for one or more inputs."""
+        model = validate_embedding_model(model)
+        dimensions = validate_embedding_dimensions(dimensions)
+        body = {
+            "model": model,
+            "dimensions": dimensions,
+            "input": input,
+            **kwargs,
+        }
         data = self._http.post_json("/v1/embeddings", body)
         return EmbeddingCreateResponse.model_validate(data)
