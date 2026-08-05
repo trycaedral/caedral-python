@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.1.0 — 2026-08-04
+
+### Added
+
+- Legacy embedding alias `caedral-embed` maps to canonical `caedral-embed-e1-small-v1`
+- Explicit `input_type` (`query` | `document`) and `encoding_format` (`float` | `base64`) on `embeddings.create()`
+
 ## 2.0.0 — 2026-08-04
 
 ### Breaking

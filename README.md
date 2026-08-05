@@ -1,6 +1,6 @@
 # Caedral Python SDK
 
-Official Python client for the [Caedral API](https://caedral.com) (**v2.0.0**). OpenAI-compatible request shapes — point your existing code at Caedral with minimal changes.
+Official Python client for the [Caedral API](https://caedral.com) (**v2.1.0**). OpenAI-compatible request shapes — point your existing code at Caedral with minimal changes.
 
 ## Installation
 
@@ -117,12 +117,16 @@ print("Overage used:", usage.overage.usedCents)
 
 ```python
 result = caedral.embeddings.create(
-    model="caedral-embed-e1-small-v1",
-    input="query: Caedral unifies frontier models behind one API.",
+    model="caedral-embed",  # legacy alias; resolves to caedral-embed-e1-small-v1
+    input="Caedral unifies frontier models behind one API.",
+    input_type="query",
     dimensions=384,
+    encoding_format="float",
 )
 print(len(result.data[0].embedding))  # 384
 ```
+
+Supported embedding parameters: `input_type` (`query` | `document`), `encoding_format` (`float` | `base64`), and `dimensions` (384).
 
 ### `caedral.images.generate(...)`
 
