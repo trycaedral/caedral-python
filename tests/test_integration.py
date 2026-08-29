@@ -56,15 +56,11 @@ def test_usage_get(client: Caedral) -> None:
     usage = client.usage.get()
 
     assert isinstance(usage.accountStatus, str)
-    assert isinstance(usage.plan, str)
-    assert isinstance(usage.planStatus, str)
     assert isinstance(usage.balanceCents, int)
-    assert usage.weeklyPool.limit >= 0
-    assert usage.weeklyPool.used >= 0
-    assert usage.weeklyPool.remaining >= 0
-    assert isinstance(usage.overage.enabled, bool)
-    assert isinstance(usage.overage.usedCents, int)
-    assert isinstance(usage.balanceWeightedUnitsAffordable, int)
+    if usage.balanceMilliCents is not None:
+        assert isinstance(usage.balanceMilliCents, int)
+    if usage.weeklyPool is not None:
+        assert usage.weeklyPool.limit >= 0
 
 
 def test_invalid_api_key() -> None:

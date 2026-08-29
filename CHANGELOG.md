@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Align `UsageSummary` with prepaid `GET /v1/usage` (`balanceMilliCents`; plan/pool/overage optional)
+
 ## 2.1.0 — 2026-08-04
 
 ### Added

@@ -81,12 +81,13 @@ class OverageSummary(CaedralBaseModel):
 
 class UsageSummary(CaedralBaseModel):
     accountStatus: str
-    plan: str
-    planStatus: str
     balanceCents: int
-    weeklyPool: WeeklyPool
-    overage: OverageSummary
-    balanceWeightedUnitsAffordable: int
+    balanceMilliCents: int | None = None
+    balanceWeightedUnitsAffordable: int | None = None
+    plan: str | None = None
+    planStatus: str | None = None
+    weeklyPool: WeeklyPool | None = None
+    overage: OverageSummary | None = None
 
 
 class EmbeddingData(CaedralBaseModel):

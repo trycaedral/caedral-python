@@ -14,9 +14,9 @@ class UsageResource:
         """Fetch a snapshot of the account's current billing state.
 
         Returns:
-            A :class:`UsageSummary` describing the current plan,
-            weekly free pool utilization, prepaid balance, and
-            overage limits.
+            A :class:`UsageSummary` with prepaid ``accountStatus``,
+            ``balanceCents``, and ``balanceMilliCents``. Plan/pool
+            fields are optional leftovers from older payloads.
 
         Raises:
             CaedralAPIError: If the API returns a non-2xx response.

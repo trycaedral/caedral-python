@@ -41,7 +41,7 @@ Or use a context manager:
 ```python
 with Caedral(api_key="cd_live_...", base_url="http://localhost:5001") as caedral:
     usage = caedral.usage.get()
-    print(usage.weeklyPool.remaining)
+    print(usage.balanceCents)
 ```
 
 Production default base URL: `https://api.caedral.com`.
@@ -108,9 +108,9 @@ for model in models.data:
 
 ```python
 usage = caedral.usage.get()
-print("Pool remaining:", usage.weeklyPool.remaining)
+print("Status:", usage.accountStatus)
 print("Balance (cents):", usage.balanceCents)
-print("Overage used:", usage.overage.usedCents)
+print("Balance (milli-cents):", usage.balanceMilliCents)
 ```
 
 ### `caedral.embeddings.create(...)`
