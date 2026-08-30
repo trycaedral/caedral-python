@@ -79,14 +79,41 @@ class OverageSummary(CaedralBaseModel):
     remainingCents: int | None = None
 
 
+class UsagePool(CaedralBaseModel):
+    usedMilli: int = 0
+    limitMilli: int = 0
+    usedFormatted: str | None = None
+    limitFormatted: str | None = None
+    percentUsed: float = 0
+    available: bool = True
+
+
+class UsagePlan(CaedralBaseModel):
+    id: str
+    name: str
+    interval: str
+    status: str
+    priceCents: int | None = None
+
+
+class UsageOnDemand(CaedralBaseModel):
+    mode: str
+    allowed: bool
+    blocked: bool | None = None
+    enabled: bool | None = None
+    accruedMilli: int = 0
+    spentMilli: int | None = None
+    accruedFormatted: str | None = None
+    spentFormatted: str | None = None
+
+
 class UsageSummary(CaedralBaseModel):
     accountStatus: str
-    plan: str
-    planStatus: str
-    balanceCents: int
-    weeklyPool: WeeklyPool
-    overage: OverageSummary
-    balanceWeightedUnitsAffordable: int
+    plan: UsagePlan | None = None
+    billingPeriod: dict[str, Any] | None = None
+    pools: dict[str, UsagePool] | None = None
+    onDemand: UsageOnDemand | None = None
+    quota: dict[str, Any] | None = None
 
 
 class EmbeddingData(CaedralBaseModel):
