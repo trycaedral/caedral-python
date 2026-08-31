@@ -9,6 +9,11 @@ class CaedralBaseModel(BaseModel):
     model_config = ConfigDict(extra="allow")
 
 
+class NotreOptions(CaedralBaseModel):
+    mode: Literal["off", "auto"] | None = None
+    telemetry: bool | None = None
+
+
 class ChatMessageParam(CaedralBaseModel):
     role: Literal["system", "user", "assistant", "tool"]
     content: str | None
