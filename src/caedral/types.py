@@ -14,10 +14,24 @@ class NotreOptions(CaedralBaseModel):
     telemetry: bool | None = None
 
 
+class NotrePublicMetadata(CaedralBaseModel):
+    enabled: bool
+    mode: Literal["off", "auto", "shadow"]
+    intervened: bool
+    fallback_used: bool
+
+
 class ChatMessageParam(CaedralBaseModel):
     role: Literal["system", "user", "assistant", "tool"]
     content: str | None
     name: str | None = None
+
+
+class ChatCompletionCreateParams(CaedralBaseModel):
+    model: str
+    messages: list[ChatMessageParam]
+    stream: bool | None = None
+    notre: NotreOptions | None = None
 
 
 class ChatCompletionChoice(CaedralBaseModel):
@@ -39,6 +53,7 @@ class ChatCompletion(CaedralBaseModel):
     model: str
     choices: list[ChatCompletionChoice]
     usage: CompletionUsage | None = None
+    notre: NotrePublicMetadata | None = None
 
 
 class ChatCompletionChunkChoice(CaedralBaseModel):
