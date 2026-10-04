@@ -14,6 +14,12 @@ class NotreOptions(CaedralBaseModel):
     telemetry: bool | None = None
 
 
+class NotreSavedBreakdown(CaedralBaseModel):
+    cache_hit_tokens: int | None = None
+    dedup_tokens: int | None = None
+    prefilter_tokens: int | None = None
+
+
 class NotrePublicMetadata(CaedralBaseModel):
     enabled: bool
     mode: Literal["off", "auto", "shadow"]
@@ -24,6 +30,10 @@ class NotrePublicMetadata(CaedralBaseModel):
     input_saved: int | None = None
     value_usd: float | None = None
     result: Literal["optimized", "no_gain", "fallback"] | None = None
+    # Contract V3 shape fields (embeddings/rerank economy).
+    shape: Literal["chat", "embeddings", "rerank"] | None = None
+    contract_version: int | None = None
+    saved_breakdown: NotreSavedBreakdown | None = None
 
 
 class ChatMessageParam(CaedralBaseModel):
