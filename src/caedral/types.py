@@ -19,6 +19,11 @@ class NotrePublicMetadata(CaedralBaseModel):
     mode: Literal["off", "auto", "shadow"]
     intervened: bool
     fallback_used: bool
+    input_before: int | None = None
+    input_sent: int | None = None
+    input_saved: int | None = None
+    value_usd: float | None = None
+    result: Literal["optimized", "no_gain", "fallback"] | None = None
 
 
 class ChatMessageParam(CaedralBaseModel):
