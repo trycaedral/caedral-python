@@ -46,3 +46,16 @@ def test_response_telemetry_metadata_v2_flat_economy() -> None:
     assert completion.notre.input_saved == 890
     assert completion.notre.result == "optimized"
     assert completion.notre.value_usd == 0.00267
+
+
+def test_response_telemetry_metadata_v3_shape_fields() -> None:
+    raw = json.loads((FIXTURES / "notre-response-telemetry-v3.json").read_text())
+    completion = ChatCompletion.model_validate(raw)
+    assert completion.notre is not None
+    assert completion.notre.shape == "chat"
+    assert completion.notre.contract_version == 3
+    assert completion.notre.saved_breakdown is not None
+    assert completion.notre.saved_breakdown.cache_hit_tokens == 640
+    assert completion.notre.saved_breakdown.dedup_tokens == 20
+    assert completion.notre.saved_breakdown.prefilter_tokens == 0
+    assert completion.notre.input_saved == completion.notre.input_before - completion.notre.input_sent
