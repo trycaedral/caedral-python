@@ -1,4 +1,7 @@
 from __future__ import annotations
+# Explicitly invalid key for the 401 path — never a real credential.
+INVALID_INTEGRATION_KEY = 'invalid-integration-test-key'
+
 
 import pytest
 
@@ -63,7 +66,7 @@ def test_usage_get(client: Caedral) -> None:
 
 def test_invalid_api_key() -> None:
     bad_client = Caedral(
-        api_key="cd_live_invalid_integration_test_key",
+        api_key=INVALID_INTEGRATION_KEY,
         base_url="http://localhost:5001",
     )
     try:

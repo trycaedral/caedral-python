@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.0 — 2026-10-04
+
+- Contract v3: optional `shape`, `contract_version` and `saved_breakdown` fields on `NotrePublicMetadata` (embeddings/rerank economy, additive; chat wire stays v2)
+- Contract v2 formalized: flat economy fields `input_before` / `input_sent` / `input_saved` / `value_usd` / `result` on response metadata
+- Golden fixture `notre-response-telemetry-v3.json` (+ missing v2 fixture committed)
+
 ## 2.1.0 — 2026-08-04
 
 ### Added
